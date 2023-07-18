@@ -46,7 +46,7 @@ source_dir ~/.bash.d/local/after
 
 # ssh aliases
 alias ssh-vm='ssh -A kalvens@2620:9d:4000:72:136c:fa8:54b:9be1'
-alias ssh-ws='ssh kalvens@192.168.1.72'
+alias ssh-ws='ssh jefff@192.168.1.59'
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -122,11 +122,11 @@ alias ipv6-randip='dd if=/dev/urandom bs=8 count=1 2>/dev/null | od -x -A n | se
 
 bind -f ~/.inputrc
 
-export PNPM_HOME="/home/kalvens/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH:/home/kalvens/.local/bin"
+export PNPM_HOME="/home/jefff/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH:/home/jefff/.local/bin"
 
 # pnpm
-export PNPM_HOME="/home/kalvens/.local/share/pnpm"
+export PNPM_HOME="/home/jefff/.local/share/pnpm"
 case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;
