@@ -1,8 +1,7 @@
 return {
 	{
 		'ellisonleao/gruvbox.nvim',
-		lazy = false,
-		priority = 1000,
+		lazy = true,
 		config = function()
 			local gruvbox = require('gruvbox');
 			gruvbox.setup({
@@ -24,7 +23,8 @@ return {
 	},
 	{
 		"folke/tokyonight.nvim",
-		lazy = true,
+		lazy = false,
+		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme('tokyonight-night')
 			-- vim.cmd.colorscheme('tokyonight-moon')
