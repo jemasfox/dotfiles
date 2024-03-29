@@ -1,26 +1,29 @@
 #!/bin/bash
 WORKSPACE='workspace --no-auto-back-and-forth'
 BRAVE='flatpak run com.brave.Browser'
-PWA_BRAVE="$BRAVE --profile-directory=Default"
-MY_EMAIL_APP="$PWA_BRAVE --app-id=faolnafnngnfdaknnbpnkhgohbobgegn"
-MY_TEAMS_APP="$PWA_BRAVE --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo"
-WORKSPACE_1="$WORKSPACE 1: Terminal;"
-WORKSPACE_2="$WORKSPACE 2: Browser;"
-WORKSPACE_3="$WORKSPACE 3: Communications;"
+#PWA_BRAVE="$BRAVE --profile-directory=Default"
+#MY_EMAIL_APP="$PWA_BRAVE --app-id=faolnafnngnfdaknnbpnkhgohbobgegn"
+#MY_TEAMS_APP="$PWA_BRAVE --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo"
+WORKSPACE_1="$WORKSPACE 1: Jira;"
+WORKSPACE_2="$WORKSPACE 2: Mail;"
+WORKSPACE_3="$WORKSPACE 3: Terminal;"
+#WORKSPACE_3="$WORKSPACE 3: Communications;"
 
 # need to sleep in between workspace msgs otherwise
 # things can open up in the wrong workspace
-i3-msg "$WORKSPACE 1; append_layout ~/.i3/workspaces/terminal.json;"
-i3-msg 'exec "kitty bash -l -c \"~/.terminal_startup; bash -l\"'
+i3-msg "$WORKSPACE_1 append_layout ~/.i3/workspaces/browser.json;"
+i3-msg "exec $BRAVE https://rtvision.atlassian.net/jira/your-work"
 sleep 0.2
 i3-msg "$WORKSPACE_2 append_layout ~/.i3/workspaces/browser.json;"
-i3-msg "exec $BRAVE https://rtjeff.rtvision.com/"
-# i3-msg "exec firefox https://rtvision.atlassian.net/jira/your-work"
-sleep 1
-i3-msg "$WORKSPACE_3 append_layout ~/.i3/workspaces/communications.json"
-i3-msg "exec $MY_TEAMS_APP"
+i3-msg "exec $BRAVE https://outlook.office365.com/mail"
 sleep 0.2
-i3-msg "exec $MY_EMAIL_APP"
+i3-msg "$WORKSPACE_3; append_layout ~/.i3/workspaces/terminal.json;"
+i3-msg 'exec "kitty bash -l -c \"~/.terminal_startup; bash -l\"'
+#sleep 1
+#i3-msg "$WORKSPACE_3 append_layout ~/.i3/workspaces/communications.json"
+#i3-msg "exec $MY_TEAMS_APP"
+#sleep 0.2
+#i3-msg "exec $MY_EMAIL_APP"
 # sleep 1
 # i3-msg "$WORKSPACE_1 move workspace to output left"
 # i3-msg "$WORKSPACE_2 move workspace to output primary"
