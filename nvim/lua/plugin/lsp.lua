@@ -16,6 +16,7 @@ return {
 			-- {{{ LSP Configurations
 			{
 				'neovim/nvim-lspconfig',
+				dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
 				config = function()
 					local lspConfig = require('lspconfig')
 
@@ -33,36 +34,51 @@ return {
 					})
 
 					local typescriptConfig = {
-						showUnused = true,
-						showDeprecated = true,
 						format = {
 							insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true
-						},
-						preferences = {
-							importModuleSpecifier = 'non-relative',
-							importModuleSpecifierEnding = 'js'
 						}
 					}
 
 					local util = require('lspconfig.util');
+					local root_dir = util.root_pattern('.git');
 					lspConfig.volar.setup({
 						filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-						root_dir = util.root_pattern('.git'),
-						init_options = {
-							typescript = typescriptConfig,
-							javascript = typescriptConfig,
+						root_dir = root_dir,
+						settings = {
 							vue = {
 								complete = {
 									casing = {
 										tags = 'autoKebab'
 									}
 								}
-							},
-							volar = {
-								takeOverMode = {
-									extension = '*.ts|vue|js|mjs|cjs'
-								}
 							}
+						}
+					})
+					-- I tried the below but kept getting errors about package not found, so instead assuming the
+					-- default location of mason packages are used
+					-- local ts_plugin_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+					-- '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+					local ts_plugin_path = vim.fn.stdpath("data") ..
+						'/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+					lspConfig.tsserver.setup({
+						filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+						root_dir = root_dir,
+						init_options = {
+							plugins = {
+								{
+									name = "@vue/typescript-plugin",
+									location = ts_plugin_path,
+									languages = { "typescript", "vue" },
+								}
+							},
+							preferences = {
+								importModuleSpecifier = 'non-relative',
+								importModuleSpecifierEnding = 'js'
+							}
+						},
+						settings = {
+							typescript = typescriptConfig,
+							javascript = typescriptConfig,
 						}
 					})
 				end
@@ -188,6 +204,7 @@ return {
 			lsp.preset('recommended')
 			lsp.ensure_installed({
 				'volar',
+				'tsserver',
 				'eslint',
 				'rust_analyzer',
 				'jsonls',

@@ -11,7 +11,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 vim.opt.smartindent = true
 vim.opt.wrap = false
-
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv('HOME') .. '/.nvim/undo'
@@ -20,6 +21,9 @@ vim.opt.backupdir = os.getenv('HOME') .. '/.nvim/backups'
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+vim.opt.smartcase = true
+vim.opt.ignorecase = true
+
 
 vim.opt.termguicolors = true
 
@@ -29,7 +33,7 @@ vim.opt.isfname:append('@-@')
 
 vim.opt.updatetime = 50
 
-vim.g.mapleader = ','
+vim.g.mapleader = ' '
 
 -- Folds
 vim.opt.foldmethod = 'marker'
@@ -54,3 +58,12 @@ augroup templates
     autocmd BufNewFile *.vue 0r ~/.nvim/templates/sfc.vue
 augroup END
 ]])
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = { "*" },
+	callback = function()
+		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+			vim.api.nvim_exec("normal! g'\"", false)
+		end
+	end
+})

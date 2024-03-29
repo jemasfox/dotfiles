@@ -133,6 +133,9 @@ export PATH="$PNPM_HOME:$PATH:/home/jefff/.local/bin"
 
 # pnpm
 export PNPM_HOME="/home/jefff/.local/share/pnpm"
+export LAUNCH_EDITOR="$HOME/launch_editor"
+alias nvim-server="nvim --listen ~/.cache/nvim/server.pipe"
+
 case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;
