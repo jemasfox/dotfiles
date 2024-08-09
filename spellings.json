@@ -1,5 +1,9 @@
 {
   "words": [
+    "Addl",
+    "addl",
+    "bidvault",
+    "Bidvault",
     "Connex",
     "Csrfp",
     "Kalven",
@@ -7,6 +11,9 @@
     "Schraut",
     "Stringable",
     "Trettel",
+    "TINUBU",
+    "UCCS",
+    "ASBUILT",
     "accum",
     "amcharts",
     "augroup",
@@ -30,6 +37,8 @@
     "lspkind",
     "luxon",
     "nopad",
+    "Nuxt",
+    "nuxt",
     "nvim",
     "oneoffice",
     "oper",
@@ -51,6 +60,7 @@
     "qflist",
     "Quickfix",
     "devicons",
-    "folke"
+    "folke",
+    "Toggleable"
   ]
 }
