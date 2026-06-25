@@ -283,6 +283,10 @@ apply_component_selection() {
 					echo 'package shfmt not found, install using local OS package manager for bash formatting'
 				fi
 
+				if ! which tree-sitter &>/dev/null; then
+					echo 'package tree-sitter not found, install using local OS package manager for neovim treesitter parser installs'
+				fi
+
 				if ! which cargo &>/dev/null; then
 					echo 'Cargo not found, skipping rust dependencys'
 				else
