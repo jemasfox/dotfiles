@@ -72,7 +72,7 @@ return {
 		'saghen/blink.lib'
 	},
 	build = function()
-		require('blink.cmp').build():wait(60000)
+		require('blink.cmp').build():pwait()
 	end,
 	init = function()
 		vim.keymap.set('i', '<Tab>', function()
