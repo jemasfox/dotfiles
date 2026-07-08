@@ -291,11 +291,13 @@ return {
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }),
 							{ bufnr = event.buf })
 					end, { buffer = event.buf, desc = 'Toggle inlay hints' })
+					--[[
 					vim.diagnostic.config({
 						virtual_lines = {
 							current_line = true,
 						},
 					})
+					]] --
 
 					-- setup formatting cmds
 					local allowedFormatters = {
@@ -393,6 +395,7 @@ return {
 	-- {{{ Formatters and Linters
 	{
 		'nvimtools/none-ls.nvim',
+		--[
 		dependencies = {
 			{
 				'davidmh/cspell.nvim',
@@ -401,13 +404,16 @@ return {
 				}
 			}
 		},
+		--]]
 		config = function()
+			--[[
 			local cSpell = require('cspell')
 			local cSpellConfig = {
 				find_json = function(cwd)
 					return os.getenv("HOME") .. '/.spellings.json'
 				end,
 			}
+			--]]
 
 			local nullLs = require('null-ls')
 			nullLs.setup({
@@ -417,6 +423,7 @@ return {
 					nullLs.builtins.formatting.shfmt.with({
 						filetypes = { 'sh', 'bash' }
 					}),
+					--[[
 					cSpell.diagnostics.with({
 						config = cSpellConfig,
 						diagnostics_postprocess = function(diagnostic)
@@ -426,6 +433,7 @@ return {
 						end,
 					}),
 					cSpell.code_actions.with({ config = cSpellConfig }),
+					--]]
 				}
 			})
 		end

@@ -165,7 +165,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -175,10 +175,16 @@ export PATH=$BUN_INSTALL/bin:$PATH
 export PATH="/opt/nvim/bin:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 export PATH="$HOME/go/bin:$PATH"
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
+alias backup='bash ~/bin/backup.sh'
+alias backup-all='bash ~/bin/backup-all.sh'
+alias restore='bash ~/bin/restore.sh'
+alias restore-all='bash ~/bin/restore-all.sh'
+alias ngrep='grep -rn --exclude-dir=.pruned-workspace --exclude-dir=file-scan --exclude-dir=.nuxt --exclude-dir=playwright-report --exclude-dir=test-results --exclude-dir=.drizzle --exclude-dir=.files --exclude-dir=node_modules --exclude-dir=.pr1uned-workspace --exclude-dir=build --exclude-dir=.git --exclude-dir=static --exclude-dir=dist --exclude-dir=volumes --exclude-dir=.turbo --color=auto'
+alias clean-app='make down; make clean; rm -rf .turbo/cache/;'
