@@ -6,6 +6,9 @@ local typescriptConfig = {
 	format = typescriptPreferences.format,
 	preferences = typescriptPreferences.preferences,
 	suggest = typescriptPreferences.suggest,
+	tsserver = {
+		maxTsServerMemory = 8192,
+	},
 	experimental = {
 		-- useTsgo = true,
 	},

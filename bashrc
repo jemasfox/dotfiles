@@ -178,8 +178,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # . "$HOME/.cargo/env"
 export PATH="$HOME/go/bin:$PATH"
 
-# opencode
-export PATH="$HOME/.opencode/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 alias backup='bash ~/bin/backup.sh'
@@ -187,4 +185,4 @@ alias backup-all='bash ~/bin/backup-all.sh'
 alias restore='bash ~/bin/restore.sh'
 alias restore-all='bash ~/bin/restore-all.sh'
 alias ngrep='grep -rn --exclude-dir=.pruned-workspace --exclude-dir=file-scan --exclude-dir=.nuxt --exclude-dir=playwright-report --exclude-dir=test-results --exclude-dir=.drizzle --exclude-dir=.files --exclude-dir=node_modules --exclude-dir=.pr1uned-workspace --exclude-dir=build --exclude-dir=.git --exclude-dir=static --exclude-dir=dist --exclude-dir=volumes --exclude-dir=.turbo --exclude-dir=reports --exclude-dir=.npm --exclude-dir=.cache --exclude-dir=.local --exclude-dir=.bun --color=auto'
-alias clean-app='make down; make clean; rm -rf .turbo/cache/;'
+export PATH="$HOME/.local/bin:$PATH"

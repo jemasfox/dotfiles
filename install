@@ -244,17 +244,6 @@ apply_component_selection() {
 	launch_editor)
 		apply_single_selection launch_editor "$dest_dir/launch_editor" 'launch editor script' "$selected"
 		;;
-	opencode)
-		if [[ $selected -eq 1 ]]; then
-			mkdir -p "$dest_dir/.config/opencode"
-			apply_single_selection opencode.jsonc "$dest_dir/.config/opencode/opencode.jsonc" 'opencode.jsonc' 1
-			apply_single_selection tui.json "$dest_dir/.config/opencode/tui.json" 'opencode tui.json' 1
-		else
-			echo 'dotfiles: uninstall opencode config if managed'
-			apply_single_selection opencode.jsonc "$dest_dir/.config/opencode/opencode.jsonc" 'opencode.jsonc' 0
-			apply_single_selection tui.json "$dest_dir/.config/opencode/tui.json" 'opencode tui.json' 0
-		fi
-		;;
 	neovim_config)
 		if [[ $selected -eq 1 ]]; then
 			if ! which node &>/dev/null; then
@@ -309,7 +298,7 @@ apply_component_selection() {
 
 install_home() {
 	local dest_dir="$HOME"
-	local excluded="$(basename $0) README.md install update i3-config gtk-settings.ini i3 init_tmux launch_editor vim vimrc nvim psqlrc tui.json opencode.jsonc Xresources Xresources-themes Xresources.d fonts bash_profile bashrc inputrc spellings.json tmux.conf"
+	local excluded="$(basename $0) README.md install update i3-config gtk-settings.ini i3 init_tmux launch_editor vim vimrc nvim psqlrc Xresources Xresources-themes Xresources.d fonts bash_profile bashrc inputrc spellings.json tmux.conf"
 
 	local status
 	local selected
@@ -328,13 +317,6 @@ install_home() {
 		selected=1
 	fi
 	add_menu_item 'component' 'bash_files' '' 'bash files' "$selected" "$status"
-
-	status=$(component_status "opencode.jsonc::$dest_dir/.config/opencode/opencode.jsonc" "tui.json::$dest_dir/.config/opencode/tui.json")
-	selected=0
-	if component_enabled_by_default "$status"; then
-		selected=1
-	fi
-	add_menu_item 'component' 'opencode' '' 'opencode config' "$selected" "$status"
 
 	status=$(component_status "tmux.conf::$dest_dir/.tmux.conf" "init_tmux::$dest_dir/init_tmux")
 	selected=0

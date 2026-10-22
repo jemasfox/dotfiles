@@ -40,7 +40,7 @@ tmux new-window -t $SESSION1:9 -n 'php' -c $PHP_HOME
 sleep 1
 tmux send-keys -t docker.bottom-left 'pnpm dev --filter=@rtvision/app-ui'
 tmux send-keys -t docker.bottom-right 'pnpm generate-index-dev --filter=@rtvision/app-ui^...'
-tmux send-keys -t docker 'make down; make clean; rm -rf .turbo/cache; make' Enter
+tmux send-keys -t docker 'make'
 tmux send-keys -t add-in.left 'pnpm start'
 tmux send-keys -t aws-mgmt "ssh mgmt.aws.rtvision.com"
 tmux send-keys -t db 'psql -U postgres -h localhost rtvision'

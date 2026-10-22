@@ -13,18 +13,18 @@ return {
 			require('mason').setup({})
 			require('mason-lspconfig').setup({
 				ensure_installed = {
+					'vtsls',
 					'vue_ls',
 					'jsonls',
 					'lua_ls',
 					'bashls',
 					'phpactor',
 					'oxlint',
-					'tsc',
 					'oxfmt',
 					'eslint',
 				},
 				automatic_enable = {
-					exclude = { 'vtsls', 'copilot' },
+					exclude = { 'vtsls', 'copilot', 'rust_analyzer' },
 				},
 			})
 
